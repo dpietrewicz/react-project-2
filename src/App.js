@@ -1,25 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import styles from "./App.module.css";
+import Header from "./components/Header/Header";
+import BodyInput from "./components/Body/BodyInput";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [incomes, setIncomes] = useState([]);
+    const [expenses, setExpenses] = useState([]);
+
+    const handleAddIncomes = (income) => {
+        setIncomes((prevState) => [...prevState, income]);
+    };
+
+    const handleAddExpense = (expense) => {
+        setExpenses((prevState) => [...prevState, expense]);
+    };
+
+    return (
+        <>
+            <Header />
+            <section className={styles.containerPrimary}>
+                <BodyInput
+                    inputLabel={"Przychody"}
+                    placeholder={"Nazwa przychodu"}
+                />
+                <BodyInput
+                    inputLabel={"Wydatki"}
+                    placeholder={"Nazwa wydatku"}
+                />
+                <div>
+                    {/* <AddPositionForm
+                        label="przychody"
+                        onPositionAdd={handleAddIncomes}
+                    />
+                    <AddPositionForm
+                        label="wydatki"
+                        onPositionAdd={handleAddExpense}
+                    /> */}
+                </div>
+
+                {/* <PositionsList items={incomes} label="przychody" />
+                <PositionsList items={expenses} label="wydatki" /> */}
+            </section>
+        </>
+    );
 }
 
 export default App;
